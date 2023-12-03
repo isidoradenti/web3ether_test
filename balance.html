@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Set the character set and viewport for better display on various devices -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ethers.js Example</title>
+</head>
+<body>
+
+    <!-- Main heading for the example -->
+    <h1>Ethers.js Example</h1>
+    
+    <!-- Input field for entering Ethereum wallet address -->
+    <label for="walletAddress">Enter Ethereum wallet address:</label>
+    <input type="text" id="walletAddress" placeholder="E.g., 0xYourWalletAddress">
+
+    <!-- Button to trigger the function to get the balance -->
+    <button onclick="getBalance()">Get Balance</button>
+
+    <!-- Container to display the output -->
+    <div id="output"></div>
+
+    <!-- Include the ethers.js library from the official CDN -->
+    <script src="https://cdn.ethers.io/lib/ethers-5.0.umd.min.js"></script>
+    <script>
+        // Async function to get the balance of the provided Ethereum wallet address
+        async function getBalance() {
+            // Retrieve the wallet address from the input field
+            const walletAddress = document.getElementById('walletAddress').value;
+
+            // Check if the wallet address is provided
+            if (!walletAddress) {
+                alert('Please enter an Ethereum wallet address.');
+                return;
+            }
+
+            try {
+                // Create a provider object using Infura
+                const provider = new ethers.providers.InfuraProvider('ropsten', 'YourInfuraApiKey');
+
+                // Create a wallet object with the specified address
+                const wallet = new ethers.Wallet(walletAddress, provider);
+
+                // Get the balance of the wallet
+                const balance = await wallet.getBalance();
+                
+                // Display the result in the designated output container
+                document.getElementById('output').innerHTML = `Balance of ${walletAddress}: ${ethers.utils.formatEther(balance)} ETH`;
+            } catch (error) {
+                // Display an alert in case of an error
+                alert(`Error: ${error.message}`);
+            }
+        }
+    </script>
+
+</body>
+</html>
