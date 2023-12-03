@@ -1,5 +1,5 @@
 # web3ether_test
-first simple test with package ether.js
+_first simple test with package ether.js_
 ####
 example of simple JavaScript code using the ethers.js library to connect to the Ethereum network and get the wallet balance
 Replace `'YourInfuraApiKey'` with your actual Infura API key. Note that the example uses the Ropsten network. If you want to use the Ethereum mainnet, replace `'ropsten'` with `'homestead'`.
